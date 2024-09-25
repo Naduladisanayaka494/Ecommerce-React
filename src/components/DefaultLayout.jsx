@@ -12,6 +12,7 @@ export default function DefaultLayout() {
         <header>
           <div>Header</div>
           <div>{user ? user.name : "Guest"}</div>
+          <a href="#" onClick={onLogout} className="btn btn-logout">Logout</a>
         </header>
       </div>
       <Outlet />
