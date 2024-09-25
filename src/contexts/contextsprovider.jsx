@@ -1,11 +1,12 @@
-import { createContext, useContext, useState } from "react";
+import { useContext } from "react";
+import { useState } from "react";
+import { createContext } from "react";
 
-// Create context with default values
-const stateContext = createContext({
+const StateContext = createContext({
   user: null,
   token: null,
-  setUser: () => null,
-  setToken: () => null,
+  setUser: () => {},
+  setToken: () => {},
 });
 
 export const ContextProvider = ({ children }) => {
@@ -20,14 +21,18 @@ export const ContextProvider = ({ children }) => {
       localStorage.removeItem("ACCESS_TOKEN");
     }
   };
-
-  // Pass the values as an object to the Provider
   return (
-    <stateContext.Provider value={{ user, token, setUser, setToken }}>
+    <StateContext.Provider
+      value={{
+        user,
+        token,
+        setUser,
+        setToken,
+      }}
+    >
       {children}
-    </stateContext.Provider>
+    </StateContext.Provider>
   );
 };
 
-// Correctly use the stateContext in the custom hook
-export const useStateContext = () => useContext(stateContext);
+export const useStateContext = () => useContext(StateContext);

@@ -7,8 +7,13 @@ export default function DefaultLayout() {
     <Navigate to={'/login'}></Navigate>
   }
   return (
-    <div>
-      <div>Default</div>
+    <div id="defaultLayout">
+      <div className="content">
+        <header>
+          <div>Header</div>
+          <div>{user ? user.name : "Guest"}</div>
+        </header>
+      </div>
       <Outlet />
     </div>
   );
